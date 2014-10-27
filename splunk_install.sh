@@ -1,5 +1,22 @@
 #!/bin/sh
+version=6.1.4-233537
 cd $SPLUNK_HOME
+
+echo "What version-build of splunk should we install? default($version):"
+read u_version
+echo "What should we make the splunk admin password?":
+read password
+
+if [ $u_version ]
+  then
+   ver_split=${u_version/-/ };
+   version=${ver_split[0]};
+   build=${ver_split[1]};
+ else
+   ver_split=(${version/-/ })
+   version=${ver_split[0]};
+   build=${ver_split[1]};
+fi
 
 
 wget=/usr/bin/wget
